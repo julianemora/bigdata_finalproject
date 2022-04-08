@@ -1,4 +1,4 @@
-sample_id	barcode	primer_adapter	location	date	sample_name
+sampleid	barcode	primer_adapter	location	date	samplename
 CP01	TAAGGCGATAGATCGC	CTGTCTCTTATACACATCT	India_Point_Park	20190322	W_19_IPT1
 CP02	CGTACTAGTAGATCGC	CTGTCTCTTATACACATCT	India_Point_Park	20190322	W_19_IPT2
 CP03	AGGCAGAATAGATCGC	CTGTCTCTTATACACATCT	India_Point_Park	20190322	W_19_IPT3
