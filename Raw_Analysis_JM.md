@@ -1,9 +1,6 @@
 # Final Project Raw Analysis Juliane Mora 
 
-### Research Question: Will eDNA sampling accurately measure vertebrate and invertebrate biodiversity in Narragansett Bay?
-* for this analysis we will be looking at a subset of 10 samples from 4 locations
-
-### The following are steps I used to visualize my data
+### The following are steps I used to visualize my data on QIIME2 via HPC command line
 
 ## Adding the raw sequence files to Bluewaves
 All of the raw sequences were located on my google drive (I have uploaded them to github as well so they are avaiable for others to analyze). I set up a connection between my google drive and Bluewaves, then copied the files from my google drive to a new folder in Bluewaves. There are other ways to do this such as using scp, wget, etc.
