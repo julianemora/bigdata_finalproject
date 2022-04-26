@@ -48,7 +48,7 @@ qiime demux summarize \
   --i-data demux-paired-end.qza \
   --o-visualization demux-paired-end-summary.qzv
 
-#input is the paired end sequenced
+#input is the paired end sequences
 #output is the vizualization file
 ```
 
@@ -114,4 +114,8 @@ QIIME2view is part of QIIME.org and allows for dragging and dropping of .qzv fil
 git add nameoffile.qzv
 git commit -m "QIIME Visualization"
 git push main origin
+```
+## Visualizations
+```
+add the visualizations here with comments about what they mean
 ```
