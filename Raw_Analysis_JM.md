@@ -1,9 +1,18 @@
-# Final Project Juliane Mora 
+# Final Project Raw Analysis Juliane Mora 
 
 ### Research Question: Will eDNA sampling accurately measure vertebrate and invertebrate biodiversity in Narragansett Bay?
 * for this analysis we will be looking at a subset of 10 samples from 4 locations
 
 ### The following are steps I used to visualize my data
+
+## Adding the raw sequence files to Bluewaves
+All of the raw sequences were located on my google drive (I have uploaded them to github as well so they are avaiable for others to analyze). I set up a connection between my google drive and Bluewaves, then copied the files from my google drive to a new folder in Bluewaves. There are other ways to do this such as using scp, wget, etc.
+```
+#copying subset of data from google drive to a new folder
+#cp -r means copying recursive (copies all files within a file)
+#because of name differences first nine files are before the pipe tenth file is after the pipe
+cp -r CP0* ../raw_data_subset | cp -r CP10_L* ../raw_data_subset
+```
 
 ## Importing data using QIIME2
 The sequences I imported are already demultiplexed. This script takes the demultiplexed fastq.qz files and generates a .qza file of the demultiplexed paired end sequences. I ran this script from the folder location containing the fastq.qz files.
@@ -21,7 +30,7 @@ qiime tools import \
 ```
 
 ## Creating a metadata file
-A metadata file is used to import important information about each sample into QIIME2. I created the metadata file in google sheets. I downloaded an extension on google sheets called Keemei to verify the format was compatible with QIIME. Then I downloaded the metadata file to my local drive and saved it as a .tsv.
+A metadata file is used to import important information about each sample into QIIME2. I created the metadata file in google sheets. I downloaded an extension on google sheets called Keemei to verify the format was compatible with QIIME2. Then I downloaded the metadata file to my local drive and saved it as a .tsv.
 
 ### Moving metadata file from local drive to github and using wget to import into Bluewaves 
 ```
