@@ -115,7 +115,40 @@ git add nameoffile.qzv
 git commit -m "QIIME Visualization"
 git push main origin
 ```
-## Visualizations
+## Visualizations and R analysis
+Once I dragged and dropped files into QIIME2view, I saved the file datasets to my computer as excel files. These are the codes I used in R to look at the excel files and plot them. I plotted sample ID, frequencies, secquence counts, and locations in different graphs to show various information about the data.
 ```
-add the visualizations here with comments about what they mean
+descriptive_stats <- read_excel("descriptive_stats.xlsx")
+feature_frequency <- read_excel("feature-frequency-detail.xlsx")
+persample_fastqcounts <- read_excel("per-sample-fastq-counts.xlsx")
+sample_frequency <- read_excel("sample-frequency-detail.xlsx")
+sequences <- read_excel("Sequences.xlsx")
+metadata <- read_excel("subsetmetadata.xlsx")
+sequence_frequency <- merge(feature_frequency, sequences, by = "Feature")
+
+sample_sequencecount_frequency <- merge(sample_frequency, persample_fastqcounts, by.x =c("Sample"),by.y=c("Sample name"))
+location_sequencecount_freq <- merge(sample_sequencecount_frequency, metadata, by.x =c("Sample"),by.y=c("sampleid"))
+names(location_sequencecount_freq)[names(location_sequencecount_freq) == "Sequence count"] <- "sequencecount"
+
+ggplot(location_sequencecount_freq, mapping= aes (location, Frequency))+geom_point() +
+  labs(x="Location",y="Frequency")
+#Location and Frequency. Haines point boat launch has the highest frequency, followed by India point park.
+#Conimucut point park has the lowest, which is probably due to only one sample from that location being included.
+
+ggplot(location_sequencecount_freq, mapping = aes (location, sequencecount)) + geom_point() +
+  labs (x = "Location", y = "Sequence Count")
+#Location and Sequence count. Haines point boat lauch has the highest sequence count.
+#India point park and Sabin point park are similar. The sample from Conimucut point park also has a high sequence count.
+
+ggplot(location_sequencecount_freq, mapping = aes (Sample, Frequency)) + geom_point() +
+  labs (x = "Sample ID", y = "Frequency")
+#the sample with the highest frequency is W-19-HP2 which was sampled from Hains point boat launch.
+#the samples with the lowest frequency are W-19-IPT1 and W-19-SP1, which were sampled from
+#India point park and Sabin point park
+
+ggplot(location_sequencecount_freq, mapping = aes (Sample, sequencecount)) + geom_point() +
+  labs (x = "Sample ID", y= "Sequence Count") +
+  scale_y_continuous(breaks = c(10000, 20000, 30000, 40000, 50000))
+#The samples with the highest sequence count were W-19-CP1 and W-19-HP2. CP1 was sampled from
+#Conimucut point park and W-19-HP2 was sampled from Haines point boat launch.
 ```
